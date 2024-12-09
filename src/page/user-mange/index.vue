@@ -17,7 +17,7 @@
                 <td v-for="tableConfigItem in tableConfig" :key="tableConfigItem.dataIndex">
                     {{ item[tableConfigItem.dataIndex] }}
                 </td>
-                <td><button @click="()=> goDetail(item.id)">查看详情</button></td>
+                <td><button @click="goDetail(item)">查看详情</button></td>
             </tr>
         </tbody>
     </table>
@@ -47,8 +47,8 @@ const getData = async () => {
     dataSource.value = res.data.data.record;
 };
 getData();
-const goDetail = (id) => {
-    router.push({ name: "userDetail", params: { id } });
+const goDetail = (item) => {
+    router.push({ name: "userDetail", query: { ...item } });
 };
 </script>
 <style></style>

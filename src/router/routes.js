@@ -1,5 +1,6 @@
 import LoansMange from "../page/loans-manage/index.vue";
 import UserManage from "../page/user-mange/index.vue";
+import UserDetail from "../page/user-mange/userDetail.vue";
 import MenuManage from "../page/menu-manage/index.vue";
 import StudentManage from "../page/student-manage/index2.vue"
  
@@ -10,9 +11,9 @@ const routes = [
     { path: "/menu",component: MenuManage, name: "menuManage"},
     { path: "/student",component: StudentManage },
     { 
-        path: "/user/:id",
+        path: "/userDetail",
         name: "userDetail",
-        component: UserManage,
+        component: UserDetail,
         meta: { title: "用户详情" }
     }
 ]
