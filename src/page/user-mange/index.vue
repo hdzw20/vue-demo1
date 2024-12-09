@@ -1,8 +1,10 @@
 <template>
+    <div v-if="route.params.id">用户详情</div>
     <form>
         用户名:<input type="text" v-model="searchObj.username" />
         邮箱:<input type="text" v-model="searchObj.email" />
     </form>
+
     <button @click="search">搜索</button>
     <table>
         <thead>
@@ -15,6 +17,7 @@
                 <td v-for="tableConfigItem in tableConfig" :key="tableConfigItem.dataIndex">
                     {{ item[tableConfigItem.dataIndex] }}
                 </td>
+                <td><button @click="()=> goDetail(item.id)">查看详情</button></td>
             </tr>
         </tbody>
     </table>
@@ -23,7 +26,11 @@
 //获取数据——》观察数据——》得出表格配置——》通过v-for渲染表格——》定义对象，进行双向绑定——》搜索
 import { ref } from 'vue'
 import { getUserList } from '../../service/user.js';
+import { useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 
+const router = useRouter();
+const route = useRoute();
 const tableConfig = [
     { title: "id", dataIndex: "id" },
     { title: "用户名", dataIndex: "username" },
@@ -34,11 +41,14 @@ const searchObj = ref({});
 const search = async () => {
     const res = await getUserList(searchObj.value);
     dataSource.value = res.data.data.record;
-}
+};
 const getData = async () => {
     const res = await getUserList();
     dataSource.value = res.data.data.record;
 };
 getData();
+const goDetail = (id) => {
+    router.push({ name: "userDetail", params: { id } });
+};
 </script>
 <style></style>

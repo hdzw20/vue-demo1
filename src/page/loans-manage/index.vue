@@ -24,14 +24,17 @@
 //获取数据——》观察数据——》得出表格配置——》通过v-for渲染表格——》定义对象，进行双向绑定——》搜索
 import { ref } from 'vue'
 import { getLoansList } from '../../service/loans.js';
-
+import { useRoute } from 'vue-router';
 const tableConfig = [
     { title: "借款人", dataIndex: "borrower" },
     { title: "金额", dataIndex: "amount" },
     { title: "id", dataIndex: "id" },
 ];
+
+const route = useRoute();
 const dataSource = ref([]);
 const searchObj = ref({});
+
 const search = async () => {
     const res = await getLoansList(searchObj.value);
     dataSource.value = res.data.data.record;

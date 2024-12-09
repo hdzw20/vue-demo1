@@ -1,6 +1,7 @@
 <template>
-    <router-link :to="{ path: '/loan'}">跳转到贷款管理</router-link>
+    <router-link :to="{ path: '/loan', query: { name: '借款人'} }">跳转到贷款管理</router-link>
     <router-link :to="{ name: 'userManage'}">跳转到用户管理</router-link>
+    <router-link :to="{ name: 'userDetail', params: { id: 1 } }">跳转到用户详情</router-link>
     <form>
         菜名:<input type="text" v-model="searchObj.name" />
         价格:<input type="text" v-model="searchObj.price" />

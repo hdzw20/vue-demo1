@@ -9,5 +9,11 @@ const routes = [
     { path: "/user",component: UserManage , meta: { title: "用户管理"}, name: "userManage" },
     { path: "/menu",component: MenuManage, name: "menuManage"},
     { path: "/student",component: StudentManage },
+    { 
+        path: "/user/:id",
+        name: "userDetail",
+        component: UserManage,
+        meta: { title: "用户详情" }
+    }
 ]
 export default routes
