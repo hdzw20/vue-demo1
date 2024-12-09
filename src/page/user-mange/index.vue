@@ -18,6 +18,7 @@
                     {{ item[tableConfigItem.dataIndex] }}
                 </td>
                 <td><button @click="goDetail(item)">查看详情</button></td>
+                <td><button @click="goDetail1(item.id)">查看详情1</button></td>
             </tr>
         </tbody>
     </table>
@@ -47,8 +48,11 @@ const getData = async () => {
     dataSource.value = res.data.data.record;
 };
 getData();
-const goDetail = (item) => {
-    router.push({ name: "userDetail", query: { ...item } });
+const goDetail = (query) => {
+    router.push({ name: "userDetail", query });
 };
+const goDetail1 = (id) => {
+    router.push({ name: "userDetail1", query:{ id } });
+}
 </script>
 <style></style>
