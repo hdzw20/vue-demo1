@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("成功");
+            },1000);
+        });
+        console.log(Promise);
+        
+        console.log(promise);
+        promise.then(
+            (res) => {
+                console.log("成功后的值",res);
+            },
+            (error) => {
+                console.log("失败的原因",error);
+            }
+        );
+        
+    </script>
+</head>
+<body>
+    <div>123123123</div>
+</body>
+</html>

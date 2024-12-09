@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // const requestId =()=> new Promise((resolve,reject)=>{
+        //     setTimeout(() => {
+        //         resolve("123");
+        //     },2000);
+        // });
+        const data = {
+                code: 0,
+                data: [
+                    { goodsName: '袜子', price: 20 },
+                    { goodsName: 'T恤', price: 25 },
+                    { goodsName: '牛仔裤', price: 50 },
+                    { goodsName: '连衣裙', price: 70 },
+                    { goodsName: '运动鞋', price: 80 },
+                    { goodsName: '夹克', price: 120 },
+                    { goodsName: '帽子', price: 15 },
+                    { goodsName: '围巾', price: 30 },
+                    { goodsName: '手套', price: 18 },
+                    { goodsName: '裙子', price: 60 },
+                    { goodsName: '卫衣', price: 90 },
+                ]
+            }
+        // const list = (id)=> new Promise((resolve,reject)=>{
+        //     setTimeout(() => {
+        //         resolve(data);
+        //     },3000);
+        // });
+        // requestId().then((id)=>{
+        //     return list(id);
+        // }).then((data)=>{
+        //     console.log(data);
+        // })
+        const promise1 = () => new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                reject(123);
+            },2000)
+        });
+        const promise2 =(id) => new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                resolve(data);
+            },3000)
+        });
+        promise1()
+            .then(
+                (res) => promise2(res),
+                (error) => console.log("then",error,"当前新增的名称重复")
+            )
+            .then((res) => console.log(res))
+            .catch((error) => console.log("catch",error,"后台错误，请联系管理员"))
+            .finally(() => console.log("不管正确与否，都会执行"));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
