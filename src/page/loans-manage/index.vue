@@ -5,6 +5,7 @@
         id:<input type="text" v-model="searchObj.id"/>
     </form>
     <button @click="search">搜索</button>
+    <Button type="primary" :loading="{ delay: 1}">搜索</Button>
     <table>
         <thead>
             <tr>
@@ -25,6 +26,7 @@
 import { ref } from 'vue'
 import { getLoansList } from '../../service/loans.js';
 import { useRoute } from 'vue-router';
+import { Button } from 'ant-design-vue';
 const tableConfig = [
     { title: "借款人", dataIndex: "borrower" },
     { title: "金额", dataIndex: "amount" },
