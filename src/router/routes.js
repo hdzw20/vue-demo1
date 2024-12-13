@@ -5,6 +5,8 @@ import UserDetail1 from "../page/user-mange/UserDetail1.vue";
 import MenuManage from "../page/menu-manage/index.vue";
 import StudentManage from "../page/student-manage/index2.vue"
 import Layout from "../components/Layout.vue";
+import Slot from "../page/插槽/index.vue";
+import AntdTable from "../page/antd-table/index.vue";
 const routes = [
     {
         path: "/",
@@ -21,6 +23,17 @@ const routes = [
                 name: "userManage"
             }
         ]
+    },
+    {
+        path: "/slot",
+        component: Slot,
+        name: "slot",
+        meta: { title: "插槽" }
+    },
+    {
+        path:"/antdTable",
+        name: "antdTable",
+        component: AntdTable,
     },
     {
         path: "/loan",

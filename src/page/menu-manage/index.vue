@@ -19,6 +19,7 @@
                 <td v-for="tableConfigItem in tableConfig" :key="tableConfigItem.dataIndex">
                     {{ item[tableConfigItem.dataIndex] }}
                 </td>
+                <td>编辑  新增  删除</td>
             </tr>
         </tbody>
     </table>
