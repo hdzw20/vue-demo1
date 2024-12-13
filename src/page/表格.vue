@@ -42,7 +42,7 @@ const dataArray = ref([
   { account: 'YZ0010', name: '用户10', phone: '18099999999', role: '系统管理员', status: '启用' }
 ]);
 </script>
-<style>
+<style scoped>
   a {
     margin-right: 10px;
   }

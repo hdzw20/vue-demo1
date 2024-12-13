@@ -23,7 +23,7 @@
   });
   </script>
   
-  <style>
+  <style scoped>
   /* 表格样式 */
   table {
     width: 100%;

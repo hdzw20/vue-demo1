@@ -22,7 +22,7 @@
   };
   </script>
   
-  <style>
+  <style scoped>
   /* 表单样式 */
   form {
     display: flex;

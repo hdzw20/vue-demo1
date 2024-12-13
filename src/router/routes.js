@@ -7,6 +7,7 @@ import StudentManage from "../page/student-manage/index2.vue"
 import Layout from "../components/Layout.vue";
 import Slot from "../page/插槽/index.vue";
 import AntdTable from "../page/antd-table/index.vue";
+import AntdForm from "../page/antd-form/index.vue"
 const routes = [
     {
         path: "/",
@@ -29,6 +30,11 @@ const routes = [
         component: Slot,
         name: "slot",
         meta: { title: "插槽" }
+    },
+    {
+        path:"/antdForm",
+        name: "antdForm",
+        component: AntdForm,
     },
     {
         path:"/antdTable",
