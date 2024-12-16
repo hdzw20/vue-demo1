@@ -34,7 +34,13 @@
 import { ref,defineProps, watchEffect} from 'vue';
 import { getLoansList, createLoan, updateLoan } from '../../../service/loans';
 import { message } from 'ant-design-vue';
-
+//内部逻辑
+//1.需要父组件传入编辑数据（editData,因为子组件不能直接修改父组件数据，
+// 所以通过通过watchEffect监听editData的变化，将editData赋值给内部的addObj）
+//2.需要父组件传入是否打开的标志
+//3.点击取消的时候，emit出去，让父组件关闭modal框，并清除传入的editObj，并清除子组件内部的校验情况
+//4.点击确定的时候，通过是否有id判断是新增还是编辑，然后调用对应的接口，成功后提示用户
+//emit成功事件，让父组件刷新列表，并让父组件消除传入的editObj
 const props = defineProps({
     editData: {
         type: Object,
