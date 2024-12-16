@@ -3,7 +3,7 @@ import UserManage from "../page/user-mange/index.vue";
 import UserDetail from "../page/user-mange/userDetail.vue";
 import UserDetail1 from "../page/user-mange/UserDetail1.vue";
 import MenuManage from "../page/menu-manage/index.vue";
-import StudentManage from "../page/student-manage/index2.vue"
+import StudentManage from "../page/student-manage/indexAntd.vue"
 import Layout from "../components/Layout.vue";
 import Slot from "../page/插槽/index.vue";
 import AntdTable from "../page/antd-table/index.vue";
@@ -15,14 +15,38 @@ const routes = [
         children: [
             {
                 path: "loan",
-                component: LoansMange
+                component: LoansMange,
+                meta: { title: "贷款管理" },
+                name: "loansMange"
             },
             {
                 path: "user",
                 component: UserManage,
                 meta: { title: "用户管理" },
                 name: "userManage"
-            }
+            },
+            {
+                path: "menu",
+                component: MenuManage,
+                name: "menuManage",
+                meta: { title: "菜单管理" },
+            },
+            {
+                path: "student",
+                component: StudentManage,
+                name: "studentManage",
+                meta: { title: "学生管理" },
+            },
+            {
+                path:"/antdForm",
+                name: "antdForm",
+                component: AntdForm,
+            },
+            {
+                path:"/antdTable",
+                name: "antdTable",
+                component: AntdTable,
+            },
         ]
     },
     {
@@ -31,36 +55,36 @@ const routes = [
         name: "slot",
         meta: { title: "插槽" }
     },
-    {
-        path:"/antdForm",
-        name: "antdForm",
-        component: AntdForm,
-    },
-    {
-        path:"/antdTable",
-        name: "antdTable",
-        component: AntdTable,
-    },
-    {
-        path: "/loan",
-        component: LoansMange,
-        meta: { title: "贷款管理" }
-    },
+    // {
+    //     path:"/antdForm",
+    //     name: "antdForm",
+    //     component: AntdForm,
+    // },
+    // {
+    //     path:"/antdTable",
+    //     name: "antdTable",
+    //     component: AntdTable,
+    // },
+    // {
+    //     path: "/loan",
+    //     component: LoansMange,
+    //     meta: { title: "贷款管理" }
+    // },
     // {
     //     path: "/user",
     //     component: UserManage,
     //     meta: { title: "用户管理" },
     //     name: "userManage"
     // },
-    { 
-        path: "/menu", 
-        component: MenuManage, 
-        name: "menuManage" 
-    },
-    { 
-        path: "/student", 
-        component: StudentManage 
-    },
+    // { 
+    //     path: "/menu", 
+    //     component: MenuManage, 
+    //     name: "menuManage" 
+    // },
+    // { 
+    //     path: "/student", 
+    //     component: StudentManage 
+    // },
     {
         path: "/userDetail",
         name: "userDetail",

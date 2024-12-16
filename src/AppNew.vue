@@ -1,5 +1,4 @@
 <template>
-        根
         <router-view />
 </template>
     

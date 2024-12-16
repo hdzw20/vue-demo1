@@ -30,6 +30,7 @@
   
   const getData = async () => {
     const res = await getStudentList();
+    console.log(res);
     dataSource.value = res.data.data.record;
   };
   
