@@ -1,4 +1,9 @@
 <template>
+    <AddEdit 
+    @cancel="cancel" 
+    :isOpen="isOpen" 
+    :edit-data="addObj"
+     @success="onSuccess" />
     <a-form :v-model="searchObj" layout="inline">
         <a-form-item label="借款人姓名" name="borrower">
             <a-input v-model:value="searchObj.borrower" />
@@ -7,6 +12,7 @@
             <a-button type="primary" @click="onSearch">搜索</a-button>
         </a-form-item>
     </a-form>
+    <a-button type="primary" @click="handleOpen">添加借款人</a-button>
     <a-table @change="onTableChange" :pagination="pagination" :columns="columns" :data-source="data">
         <template #headerCell="{ column }">
             <template v-if="column.key === 'title'">
@@ -29,9 +35,9 @@
                     {{ record.amount }}
                 </span>
             </template>
-            <template v-else-if="column.key === 'action'">
+            <template v-else-if="column.dataIndex === 'method'">
                 <a-space>
-                    <a-button type="primary" @click="handleEdit(record.id)">编辑</a-button>
+                    <a-button type="primary" @click="handleEdit(record)">编辑</a-button>
                     <a-button type="danger" @click="handleDelete(record.id)">删除</a-button>
                 </a-space>
             </template>
@@ -60,12 +66,18 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { getLoansList, createLoan } from '../../service/loans';
-
-
+import { getLoansList, createLoan, updateLoan } from '../../service/loans';
+import { message } from 'ant-design-vue';
+import AddEdit from './components/addEdit.vue';
 const handleDelete = (value) => {
     console.log("删除", value);
 };
+
+const isOpen = ref(false);
+const handleOpen = () => {
+    isOpen.value = true;
+}
+
 //搜索表单的数据
 const searchObj = ref({});
 
@@ -94,9 +106,9 @@ const columns = [
         key: 'amount',
     },
     {
-        title: "Action",
-        dataIndex: 'action',
-        key: 'action',
+        title: "操作",
+        dataIndex: 'method',
+        key: 'method',
     }
 ];
 
@@ -141,13 +153,25 @@ const handleAdd = async (value) => {
     // await createLoan(addObj.value);
     await createLoan(value);
 };
-const handleAdd2 = async() => {
+const handleAdd2 = async () => {
     //对数据进行校验
-    const res = await formRef.value.validateFields();
-    //校验成功后请求后端接口
-    await createLoan(res);
+    await formRef.value.validateFields();
+
+    const isEdit = !!addObj.value.id;
+
+    if(addObj.value.id) {
+        //调用编辑接口
+        await updateLoan(addObj.value);
+        message.success("编辑成功");
+    } else {
+        //调用新增接口
+        //校验成功后请求后端接口(新增)
+        await createLoan(addObj.value);
+        message.success("新增成功");
+    }
+    
     //1.提示用户2.刷新表单
-    message.success("新增成功");
+    
     //刷新列表
     getData();
     // message.error("新增失败");
@@ -155,7 +179,28 @@ const handleAdd2 = async() => {
     formRef.value.resetFields();
 };
 const handleReset = () => {
+    
     formRef.value.resetFields();
+    addObj.value = {};
+};
 
+//编辑逻辑
+//1.点击编辑按钮
+//2.填充数据
+//3.修改数据并提交
+//4.提示用户成功
+//5.刷新列表
+//6.清除数据
+const handleEdit = (value) => {
+    addObj.value = {...value};
+    isOpen.value = true;
+};
+const cancel = () => {
+    isOpen.value = false;
+    addObj.value = {};
+};
+const onSuccess = () => {
+    getData();
+    isOpen.value = false;
 }
 </script>

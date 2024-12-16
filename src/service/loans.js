@@ -4,8 +4,8 @@ const api = {
   getLoansList: "/loans",
   createLoan: "/loans",
   getLoansDetail: (id) => `/loans/${id}`,
-  updateLoans: (id) => `/loans/${id}`,
-  deleteLoans: (id) => `/loans/${id}`,
+  updateLoan: (id) => `/loans/${id}`,
+  deleteLoan: (id) => `/loans/${id}`,
 };
 
 export const getLoansList = (params = {}) => {
@@ -13,4 +13,7 @@ export const getLoansList = (params = {}) => {
 };
 export const createLoan = (data) => {
   return request({ url: api.createLoan, method: "post", data})
+};
+export const updateLoan = (data) => {
+  return request({ url: api.updateLoan(data.id), method: "put", data });
 }
